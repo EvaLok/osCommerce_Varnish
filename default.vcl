@@ -102,6 +102,11 @@ sub vcl_recv {
     unset req.http.cookie;
     return(lookup);
   }
+  # Not caching so returning a nice clean pipe straight from Apache
+  # This may seem a bit heavy but it stops checkout and sessions getting broken.
+  std.log("Returning pipe for request");
+  return(pipe);
+
 }
 
 sub vcl_deliver {
