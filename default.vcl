@@ -91,7 +91,7 @@ sub vcl_recv {
   }
 
   # Cache static objects such as images
-  if (req.request == "GET" && req.url ~ "\.(jpg|jpeg|gif|ico|css|js|png)$") {
+  if (req.request == "GET" && req.url ~ "\.(jpg|jpeg|png)$") {
     unset req.http.cookie;
     # std.log("request is for a file such as jpg jpeg etc so dropping cookie");
     return(lookup);
